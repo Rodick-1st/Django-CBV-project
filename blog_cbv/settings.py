@@ -33,6 +33,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#Django Debug Toolbar отображается только в том случае, если в списке INTERNAL_IPS есть IP приложения.
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 # Application definition
 
@@ -48,7 +52,7 @@ INSTALLED_APPS = [
     'apps.blog.apps.BlogConfig',        #ПРИЛОЖЕНИЕ BLOG
     'mptt',                             #алгоритм для работы с древовидными (иерархическими) данными
     'django_mptt_admin',                #Дополнение, админа к алгосу MPTT который выше
-
+    'debug_toolbar',                    # приложение тулбара - дебаггера
 ]
 
 MIDDLEWARE = [
@@ -59,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',          # Middleware тулбара
 ]
 
 ROOT_URLCONF = 'blog_cbv.urls'
