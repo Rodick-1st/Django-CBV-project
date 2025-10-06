@@ -49,10 +49,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
 
-    'apps.blog.apps.BlogConfig',        #ПРИЛОЖЕНИЕ BLOG
-    'mptt',                             #алгоритм для работы с древовидными (иерархическими) данными
-    'django_mptt_admin',                #Дополнение, админа к алгосу MPTT который выше
+    'apps.blog.apps.BlogConfig',        # ПРИЛОЖЕНИЕ BLOG
+    'mptt',                             # алгоритм для работы с древовидными (иерархическими) данными
+    'django_mptt_admin',                # Дополнение, админа к алгосу MPTT который выше
     'debug_toolbar',                    # приложение тулбара - дебаггера
+    'apps.accounts'                     # ПРИЛОЖЕНИЕ АККАУНТОВ
 ]
 
 MIDDLEWARE = [
