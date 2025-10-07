@@ -4,7 +4,7 @@ from django.views.generic import ListView, DetailView, UpdateView
 from .models import Post, Category
 from django.views.generic import CreateView
 from .forms import PostCreateForm, PostUpdateForm
-from ..services.mixins import AuthorRequiredMixin
+from apps.services.mixins import AuthorRequiredMixin
 
 
 class PostListView(ListView):

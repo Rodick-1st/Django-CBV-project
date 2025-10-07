@@ -19,7 +19,6 @@ class PostManager(models.Manager):
         return super().get_queryset().select_related('author', 'category').filter(status='published')
 
 
-
 class Post(models.Model):
     """
     Модель постов для нашего блога
@@ -36,11 +35,12 @@ class Post(models.Model):
     text = models.TextField(verbose_name='Полный текст записи')
     category = TreeForeignKey('Category', on_delete=models.PROTECT, related_name='posts', verbose_name='Категория')
     thumbnail = models.ImageField(default='default.jpg',
-        verbose_name='Изображение записи',
-        blank=True,
-        upload_to='images/thumbnails/%Y/%m/%d/',
-        validators=[FileExtensionValidator(allowed_extensions=('png', 'jpg', 'webp', 'jpeg', 'gif'))]
-    )
+                                  verbose_name='Изображение записи',
+                                  blank=True,
+                                  upload_to='images/thumbnails/%Y/%m/%d/',
+                                  validators=[
+                                      FileExtensionValidator(allowed_extensions=('png', 'jpg', 'webp', 'jpeg', 'gif'))]
+                                  )
     status = models.CharField(choices=STATUS_OPTIONS, default='published', verbose_name='Статус записи', max_length=10)
     create = models.DateTimeField(auto_now_add=True, verbose_name='Время добавления')
     update = models.DateTimeField(auto_now=True, verbose_name='Время обновления')
@@ -50,11 +50,9 @@ class Post(models.Model):
                                 related_name='updater_posts', blank=True)
     fixed = models.BooleanField(verbose_name='Прикреплено', default=False)
 
-
-    #Кастомный манагер
+    # Кастомный манагер
     objects = models.Manager()
     custom = PostManager()
-
 
     def save(self, *args, **kwargs):
         """
@@ -62,7 +60,6 @@ class Post(models.Model):
         """
         self.slug = unique_slugify(self, self.title, self.slug)
         super().save(*args, **kwargs)
-
 
     class Meta:
         db_table = 'blog_post'
@@ -79,7 +76,6 @@ class Post(models.Model):
         Получаем прямую ссылку на статью
         """
         return reverse('post_detail', kwargs={'slug': self.slug})
-
 
 
 class Category(MPTTModel):
@@ -104,7 +100,6 @@ class Category(MPTTModel):
         Получаем прямую ссылку на категорию
         """
         return reverse('post_by_category', kwargs={'slug': self.slug})
-
 
     class MPTTMeta:
         """
