@@ -14,8 +14,9 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 p-4">
-            {% block content %}
-            {% endblock %}
+            {% include 'includes/messages.html' %}
+                {% block content %}
+                {% endblock %}
             {% include 'pagination.html' %}
         </div>
         <div class="col-4 p-4">
