@@ -53,8 +53,10 @@ INSTALLED_APPS = [
     'mptt',                             # алгоритм для работы с древовидными (иерархическими) данными
     'django_mptt_admin',                # Дополнение, админа к алгосу MPTT который выше
     'debug_toolbar',                    # приложение тулбара - дебаггера
-    'apps.accounts'                     # ПРИЛОЖЕНИЕ АККАУНТОВ
+    'apps.accounts',                    # ПРИЛОЖЕНИЕ АККАУНТОВ
+    'taggit',                           # модель Tag и менеджер для удобного добавления тегов в любую модель
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
