@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'debug_toolbar',                    # приложение тулбара - дебаггера
     'apps.accounts',                    # ПРИЛОЖЕНИЕ АККАУНТОВ
     'taggit',                           # модель Tag и менеджер для удобного добавления тегов в любую модель
+    'django_recaptcha',                 # гугл рекапча
 ]
 
 
@@ -121,6 +122,10 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+#рекапча от гугла
+RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
 
 
 # Internationalization
