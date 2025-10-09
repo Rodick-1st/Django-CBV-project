@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from mptt.models import MPTTModel, TreeForeignKey
 from django.urls import reverse
 from apps.services.utils import unique_slugify
+from taggit.managers import TaggableManager
 
 
 class PostManager(models.Manager):
@@ -54,12 +55,8 @@ class Post(models.Model):
     objects = models.Manager()
     custom = PostManager()
 
-    def save(self, *args, **kwargs):
-        """
-        При сохранении генерируем слаг и проверяем на уникальность
-        """
-        self.slug = unique_slugify(self, self.title, self.slug)
-        super().save(*args, **kwargs)
+    #Менеджер тегов
+    tags = TaggableManager()
 
     class Meta:
         db_table = 'blog_post'
@@ -67,6 +64,13 @@ class Post(models.Model):
         indexes = [models.Index(fields=['-fixed', '-create', 'status'])]
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
+
+    def save(self, *args, **kwargs):
+        """
+        При сохранении генерируем слаг и проверяем на уникальность
+        """
+        self.slug = unique_slugify(self, self.title, self.slug)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
