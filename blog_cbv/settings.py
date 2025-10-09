@@ -56,6 +56,8 @@ INSTALLED_APPS = [
     'apps.accounts',                    # ПРИЛОЖЕНИЕ АККАУНТОВ
     'taggit',                           # модель Tag и менеджер для удобного добавления тегов в любую модель
     'django_recaptcha',                 # гугл рекапча
+    'ckeditor_uploader',                # с ckeditor надо быть аккуратным, там какая то хрень у других
+    'ckeditor',                         # а вообще это встроенный редактор интерфейса для ввода
 ]
 
 
@@ -146,6 +148,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = (BASE_DIR / 'static')
 STATICFILES_DIRS = [BASE_DIR / 'templates/js/']
+
+# для ckeditor
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    'awesome_ckeditor': {
+        'toolbar': 'full',
+        'height': 300,
+    },
+}
 
 MEDIA_ROOT = (BASE_DIR / 'media')
 MEDIA_URL = '/media/'
