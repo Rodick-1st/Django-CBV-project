@@ -17,7 +17,7 @@ from apps.services.mixins import AuthorRequiredMixin
 class PostListView(ListView):
     template_name = 'blog/post_list.html'
     context_object_name = 'posts'
-    paginate_by = 2
+    paginate_by = 3
     queryset = Post.custom.all() # Переопределение вызова модели
 
     def get_context_data(self, **kwargs):

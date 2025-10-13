@@ -21,7 +21,7 @@
                 Категория:
                 <a href="{% url 'post_by_category' post.category.slug %}">
                     {{ post.category.title }}
-                </a> / Добавил: {{ post.author.username }} / <small>{{ post.time_create }}</small>
+                </a> / Добавил: {{ post.author.username }} / <small>{{ post.create }}</small>
             </div>
         </div>
     </div>
@@ -35,6 +35,11 @@
         <button class="btn btn-sm btn-secondary" data-post="{{ post.id }}" data-value="-1">Дизлайк</button>
         <button class="btn btn-sm btn-secondary rating-sum">{{ post.get_sum_rating }}</button>
     </div>
+    {% if request.user.is_authenticated and request.user == post.author or request.user.is_superuser %}
+    <div class="position-absolute bottom-0 end-0 p-0">
+        <a href="{% url 'post_update' post.slug %}" class="btn btn-success shadow">Обновить пост</a>
+    </div>
+    {% endif %}
 </div>
 <div class="card border-0">
     <div class="card-body">
