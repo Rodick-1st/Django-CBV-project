@@ -69,7 +69,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     'debug_toolbar.middleware.DebugToolbarMiddleware',          # Middleware тулбара
+    'apps.accounts.middleware.ActiveUserMiddleware',            # Наш самописный мидлварь, для обновления статуса
+                                                                # "онлайн" пользователя с помощью кэширования
+
 ]
 
 ROOT_URLCONF = 'blog_cbv.urls'
@@ -161,6 +165,14 @@ CKEDITOR_CONFIGS = {
 MEDIA_ROOT = (BASE_DIR / 'media')
 MEDIA_URL = '/media/'
 
+
+# систему кэширования в Django,
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': BASE_DIR / 'cache',
+    }
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
