@@ -361,6 +361,59 @@ blog_cbv/
 
 <div align="center">
 
+## 📦 Установка и запуск
+
+### Предварительные требования
+- Python 3.11+
+- PostgreSQL 12+
+- Virtualenv
+
+### 1. Клонирование репозитория
+```bash
+git clone <repository-url>
+cd Sec2-proj-master
+```
+
+### 2. Создание виртуального окружения
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# или
+venv\Scripts\activate  # Windows
+```
+
+### 3. Установка зависимостей
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Настройка окружения
+Создайте файл `.env` в корне проекта:
+```env
+SECRET_KEY=your-django-secret-key
+BD_PASSWORD=your-postgres-password
+RECAPTCHA_PUBLIC_KEY=your-recaptcha-public-key
+RECAPTCHA_PRIVATE_KEY=your-recaptcha-private-key
+```
+
+### 5. Настройка базы данных
+```sql
+CREATE DATABASE blog_cbv;
+CREATE USER blog WITH PASSWORD 'your-password';
+GRANT ALL PRIVILEGES ON DATABASE blog_cbv TO blog;
+```
+
+### 6. Миграции и суперпользователь
+```bash
+python manage.py migrate
+python manage.py createsuperuser
+```
+
+### 7. Запуск разработческого сервера
+```bash
+python manage.py runserver
+```
+
 **Django Blog CBV** - современное решение для блоговых платформ с открытым исходным кодом.
 
 [Документация Django](https://docs.djangoproject.com/) | [MPTT Documentation](https://django-mptt.readthedocs.io/)
