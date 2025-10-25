@@ -1,5 +1,3 @@
-Отлично! Все компоненты получены. Создаю комплексный README для вашего Django блога.
-
 # 🚀 Django Blog CBV Project
 
 <div align="center">
@@ -363,7 +361,7 @@ python manage.py runserver
 ```
 
 <div align="center">
-    
+    Отлично! Все компоненты получены. Создаю комплексный README для вашего Django блога.
 **Django Blog CBV** - современное решение для блоговых платформ с открытым исходным кодом.
 
 [Документация Django](https://docs.djangoproject.com/) | [MPTT Documentation](https://django-mptt.readthedocs.io/)
